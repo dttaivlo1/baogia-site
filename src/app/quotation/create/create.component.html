@@ -1,0 +1,162 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card" style="background-color: #b9e1ff4f;">
+      <div class="card-header">
+      <h1>Thêm mới</h1>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12 ml-auto mr-auto">
+            <!-- form thêm mới -->
+            <form class="sign-in-form" [formGroup]="rfCreate" (ngSubmit)="onSubmit()">
+              <ng-container formGroupName="userData">
+                <div class="card-title">Thông tin khách hàng</div>
+                <div class="form-group">
+                  <textarea class="form-control" placeholder="Nhập thông tin khách hàng" rows="2" required
+                    formControlName="name"></textarea>
+                  <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  <small *ngIf="rfCreate.hasError('invalidusername', ['name'])">Username is required!</small>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Điện thoại</label>
+                      <input type="text" class="form-control" formControlName="phone">
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Nhân viên tiếp nhận</label>
+                      <select type="text" class="form-control" formControlName="requestBy">
+                        <option [ngValue]="null" disabled>chọn nhân viên tiếp nhận</option>
+                        <option *ngFor="let item of user"> {{item.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Nhân viên phẩn hồi</label>
+                      <select type="text" class="form-control" formControlName="responseBy">
+                        <option [ngValue]="null" disabled>chọn nhân viên phản hồi</option>
+                        <option *ngFor="let item of user"> {{item.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container formArrayName="propertyData">
+              </ng-container>
+              <div class="card-title">Thông tin khách hàng</div>
+              <div class="card" style="background-color: #E0FFF0;">
+                <ng-container formArrayName="propertyData" class="card"
+                  *ngFor="let o of propertyData.controls; let i = index">
+                  <div class="form-group" formGroupName="{{i}}">
+                    <label> Tài Sản {{i+1}}</label>
+                    <textarea class="form-control" placeholder="Tên tài sản thẩm định giá" rows="2" required
+                      formControlName="name"></textarea>
+                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+                    <textarea class="form-control" placeholder="Địa chỉ tài sản thẩm định giá" rows="2" required
+                      formControlName="address"></textarea>
+                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <label>Mô tả</label>
+                    <input type="text" class="form-control" formControlName="define">
+                    <div class="row justify-content-between justify-content-end">
+                      <div class="col">
+                        <label>Quy hoạch</label>
+                        <input type="text" class="form-control" formControlName="planning">
+                      </div>
+                      <div class="col">
+                        <label>Nguồn thông tin</label>
+                        <input type="text" class="form-control" formControlName="source">
+                      </div>
+                      <div class="col align-self-end">
+                        <button type="button" class="btn btn-icon btn-round btn-danger pull-right"
+                          title='Xoá tài sản này khỏi danh sách'
+                          (click)="delProperty(i)">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                        <div *ngIf="indexData(i).controls.length  ==0">
+                          <button type="button" class="btn btn-icon btn-round btn-success "
+                          title='Thêm một hạng mục mới cho tài sản này' (click)="addIndex(i, 1)">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div  class="card mt-3">
+                      <div class="form-group"  style="background: #E6D9FF; border-radius: 4px;" formArrayName="indexData" *ngFor="let o of indexData(i).controls; let ind = index" >
+                        <div formGroupName="{{ind}}">
+                          <label> Hạng mục {{ind+1}} của tài sản {{i+1}}: </label>
+                          <textarea class="form-control" placeholder="Tên tài sản thẩm định giá" rows="2" required
+                            formControlName="name"></textarea>
+                          <div class="row justify-content-between justify-content-end">
+                            <div class="col-sm-2">
+                              <label>Đơn giá</label>
+                              <input   type="text" inputmode="decimal" pattern="[0-9,\.]*"  formControlName="unitPrice">
+                            </div>
+                            <div class="col">
+                              <label>Diện tích</label>
+                              <input type="text" class="form-control" formControlName="amount">
+                            </div>
+                            <div class="col">
+                              <label>CLCL</label>
+                              <div class="input-group mb-3">
+                                <input type="text" class="form-control" formControlName="quality">
+                              <div class="input-group-append">
+                                <span class="input-group-text">%</span>
+                              </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-2">
+                              <label>Thành tiền</label>
+                             <div class="input-group mb-3">
+
+                              <input type="text" class="form-control" formControlName="totalPrice" readonly>
+                              <div class="input-group-append">
+                                <span class="input-group-text">VNĐ</span>
+                              </div>
+                             </div>
+                            </div>
+                            <div class="col align-self-end">
+                              <button type="button" class="btn btn-icon btn-round btn-danger pull-right"
+                                title='Xoá tài sản này khỏi danh sách'
+                                (click)="delIndex(indexData(i), ind)">
+                                <i class="fa fa-trash"></i>
+                              </button>
+                              <button type="button" class="btn btn-icon btn-round btn-success " (click)="addIndex(i, indexData(i).controls.length)"
+                                title='Thêm một hạng mục mới cho tài sản này'>
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </div>
+                      </div>
+                    </div>
+                    <hr />
+                  </div>
+                  </div>
+                  </div>
+                  <ng-container >
+
+                  </ng-container>
+                </ng-container>
+                <button class="btn" type="button" (click)="addProperty()">
+                  Thêm tài sản mới <span class="badge badge-primary"></span>
+                </button>
+
+              </div>
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+            <!-- end form -->
+          </div>
+        </div>
+      </div>
+      <div class="card-action">
+
+
+        <!-- <pre>{{ rfCreate.value | json }}</pre> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="main-panel">
+
+  <div class="content">
+
+    <div class="page-inner">
+      <div class="clearfix">
+        <span class="float-left">
+          <h4 class="page-title">Danh Sách khách hàng</h4>
+        </span>
+        <span class="float-right"> <button class="btn btn-primary btn-round" (click)="changeStatus()"><i
+              class="fa-solid fa-plus"></i> Thêm mới</button></span>
+      </div>
+
+
+        <div *ngIf="create">
+         <app-create>
+         </app-create>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex align-items-right">
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary btn-border" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Tìm kiếm</button>
+                      <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        aria-describedby="basic-addon1"
+                        (input)="dt.filterGlobal($any($event.target).value, 'contains')">
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="card-body">
+              <!-- Modal -->
+
+              <circle-progress *ngIf="showSpinner" [percent]="100" [radius]="100" [outerStrokeWidth]="16"
+                [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true"
+                [animationDuration]="10000"></circle-progress>
+              <div class="table-responsive">
+
+
+                <p-table #dt [value]="quotationList" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                  [globalFilterFields]="['name','country.name','representative.name','status']"
+                  currentPageReportTemplate="Đang hiển thị từ {first} đến {last} trong tổng số {totalRecords} bản ghi"
+                  [rowsPerPageOptions]="[5,10,25,50]">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th>Khách hàng</th>
+                      <th>Tiếp nhận bởi</th>
+                      <th>Giá trị tài sản ước tính</th>
+                      <th>Trạng thái</th>
+                      <th>Thao tác </th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-quotation>
+                    <tr>
+
+                      <td>{{quotation.name}}</td>
+                      <td>{{quotation.requestBy}}</td>
+                      <td><b>{{quotation.propertyValues| number}} VNĐ</b></td>
+                      <td>{{quotation.status}}</td>
+                      <td>
+                        <button type="button" class="btn btn-icon btn-round btn-info" (click)="add()">
+                          <i class="fa-regular fa-eye"></i>
+                        </button>
+
+
+                        <button type="button" class="btn btn-icon btn-round btn-warning">
+                          <i class="fa-regular fa-pen-to-square"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-icon btn-round btn-danger">
+                          <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                        <button type="button" class="btn btn-icon btn-round btn-success"
+                          routerLink="edit/{{quotation.id}}">
+                          <i class="fa-solid fa-print"></i>
+                        </button>
+
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="paginatorleft">
+                    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                  </ng-template>
+                  <ng-template pTemplate="paginatorright">
+                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

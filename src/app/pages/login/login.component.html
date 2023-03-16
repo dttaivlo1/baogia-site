@@ -1,0 +1,23 @@
+<main>
+
+ <div class="row">
+  <div class="colm-logo">
+      <img src="../../../assets/img/logoPDF.png" alt="Logo">
+      <h2>Hệ thống quản lí báo giá của EXIMA</h2>
+  </div>
+  <div class="colm-form">
+      <div class="form-container">
+          <form   [formGroup]="form" (ngSubmit)="onSubmit()">
+            <input type="text" placeholder="Tài khoản" formControlName="username">
+          <input type="password" placeholder="Mật Khẩu" formControlName="password">
+          <button type="submit" class="btn-login" [disabled]="!form.valid">
+          Đăng Nhập
+          </button>
+            </form>
+          <a href="#">Bạn quên mật khẩu?</a>
+          <button class="btn-new" type="submit">Tạo tài khoản mới ngay</button>
+      </div>
+      <p><a href="#"><b>Hợp tác - Kỹ cương - phát triển</b></a></p>
+  </div>
+</div>
+</main>
