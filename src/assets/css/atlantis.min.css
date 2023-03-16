@@ -225,12 +225,12 @@ strong {
 
 .text-primary,
 .text-primary a {
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .text-primary a:hover,
 .text-primary:hover {
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .text-secondary,
@@ -835,22 +835,22 @@ body {
 .sidebar[data-background-color=white] .nav.nav-primary>.nav-item a:focus i,
 .sidebar[data-background-color=white] .nav.nav-primary>.nav-item a:hover i,
 .sidebar[data-background-color=white] .nav.nav-primary>.nav-item a[data-toggle=collapse][aria-expanded=true] i {
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .sidebar .nav.nav-primary>.nav-item a[data-toggle=collapse][aria-expanded=true]:before,
 .sidebar[data-background-color=white] .nav.nav-primary>.nav-item a[data-toggle=collapse][aria-expanded=true]:before {
-  background: #1572e8 !important
+  background: #31BD82 !important;
 }
 
 .sidebar .nav.nav-primary>.nav-item.active a:before,
 .sidebar[data-background-color=white] .nav.nav-primary>.nav-item.active a:before {
-  background: #1572e8 !important
+  background: #31BD82 !important;
 }
 
 .sidebar .nav.nav-primary>.nav-item.active a i,
 .sidebar[data-background-color=white] .nav.nav-primary>.nav-item.active a i {
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .sidebar .nav.nav-secondary>.nav-item a:focus i,
@@ -1094,7 +1094,7 @@ body {
 }
 
 .sidebar.sidebar-style-2 .nav.nav-primary>.nav-item.active>a {
-  background: #1572e8 !important;
+  background: #369faf !important;
   box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, .1), 4px 4px 15px -5px rgba(21, 114, 232, .4) !important
 }
 
@@ -2332,19 +2332,19 @@ body {
 }
 
 .logo-header[data-background-color=blue] {
-  background: #1572e8 !important
+  background: #31BD82 !important;
 }
 
 .logo-header[data-background-color=blue2] {
-  background: #1269db !important
+  background: #369faf !important;
 }
 
 .navbar-header[data-background-color=blue] {
-  background: #1572e8 !important
+  background: #31BD82 !important;
 }
 
 .navbar-header[data-background-color=blue2] {
-  background: #1269db !important
+  background: #369faf !important;
 }
 
 .logo-header[data-background-color=purple] {
@@ -2552,7 +2552,7 @@ body {
 }
 
 .sidebar[data-background-color=blue] {
-  background: #1572e8 !important
+  background: #31BD82 !important;
 }
 
 .sidebar[data-background-color=blue] .user {
@@ -2607,7 +2607,7 @@ body {
 .sidebar[data-background-color=blue] .nav>.nav-item.active>a:hover,
 .sidebar[data-background-color=blue] .nav>.nav-item.active>a[data-toggle=collapse][aria-expanded=true] {
   background: #fff !important;
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .sidebar[data-background-color=blue] .nav>.nav-item.active>a .caret,
@@ -2622,7 +2622,7 @@ body {
 .sidebar[data-background-color=blue] .nav>.nav-item.active>a[data-toggle=collapse][aria-expanded=true] .caret,
 .sidebar[data-background-color=blue] .nav>.nav-item.active>a[data-toggle=collapse][aria-expanded=true] i,
 .sidebar[data-background-color=blue] .nav>.nav-item.active>a[data-toggle=collapse][aria-expanded=true] p {
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .sidebar[data-background-color=blue] .nav .nav-section .sidebar-mini-icon,
@@ -2644,7 +2644,7 @@ body {
 }
 
 .sidebar[data-background-color=blue2] {
-  background: #1269db !important
+  background: #369faf !important;
 }
 
 .sidebar[data-background-color=blue2] .user {
@@ -2699,7 +2699,7 @@ body {
 .sidebar[data-background-color=blue2] .nav>.nav-item.active>a:hover,
 .sidebar[data-background-color=blue2] .nav>.nav-item.active>a[data-toggle=collapse][aria-expanded=true] {
   background: #fff !important;
-  color: #1269db !important
+  color: #369faf !important;
 }
 
 .sidebar[data-background-color=blue2] .nav>.nav-item.active>a .caret,
@@ -2714,7 +2714,7 @@ body {
 .sidebar[data-background-color=blue2] .nav>.nav-item.active>a[data-toggle=collapse][aria-expanded=true] .caret,
 .sidebar[data-background-color=blue2] .nav>.nav-item.active>a[data-toggle=collapse][aria-expanded=true] i,
 .sidebar[data-background-color=blue2] .nav>.nav-item.active>a[data-toggle=collapse][aria-expanded=true] p {
-  color: #1269db !important
+  color: #369faf !important;
 }
 
 .sidebar[data-background-color=blue2] .nav .nav-section .sidebar-mini-icon,
@@ -4371,7 +4371,7 @@ label {
 }
 
 .card-primary {
-  background: #1572e8 !important
+  background: #31BD82 !important;
 }
 
 .card-secondary {
@@ -4492,7 +4492,7 @@ label {
 }
 
 .card-pricing.card-primary .btn-light {
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .card-pricing.card-success .specification-list li {
@@ -5120,7 +5120,7 @@ label {
 }
 
 .card-annoucement.card-primary .btn-light {
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .card-annoucement.card-success .btn-light {
@@ -5343,7 +5343,7 @@ label {
 }
 
 .accordion.accordion-primary .card .card-header .btn-link {
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .accordion.accordion-secondary .card .card-header {
@@ -5908,7 +5908,7 @@ label {
 }
 
 .form-floating-label .form-control.filled+.placeholder {
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .form-floating-label .form-control ::-webkit-input-placeholder {
@@ -6282,7 +6282,7 @@ label.error {
 
 .table-bordered-bd-primary td,
 .table-bordered-bd-primary th {
-  border: 1px solid #1572e8 !important
+  border: 1px solid #31BD82 !important;
 }
 
 .table-bordered-bd-secondary td,
@@ -6321,7 +6321,7 @@ label.error {
 }
 
 .table-head-bg-primary thead {
-  border: 1px solid #1572e8 !important
+  border: 1px solid #31BD82 !important;
 }
 
 .table-head-bg-secondary thead {
@@ -6353,7 +6353,7 @@ label.error {
 
 .table-head-bg-primary thead th,
 .table-striped-bg-primary tbody tr:nth-of-type(odd) {
-  background: #1572e8 !important;
+  background: #369faf !important;
   color: #fff !important;
   border: 0 !important
 }
@@ -6824,7 +6824,7 @@ label.error {
 
 .messages-notif-box .notif-center a .notif-icon.notif-primary,
 .notif-box .notif-center a .notif-icon.notif-primary {
-  background: #1572e8 !important
+  background: #31BD82 !important;
 }
 
 .messages-notif-box .notif-center a .notif-icon.notif-secondary,
@@ -6987,7 +6987,7 @@ label.error {
 }
 
 .quick-actions:after {
-  border-bottom-color: #1572e8 !important
+  border-bottom-color: #31BD82 !important;
 }
 
 .quick-actions .quick-actions-header {
@@ -7059,7 +7059,7 @@ label.error {
 }
 
 .quick-actions.quick-actions-primary:after {
-  border-bottom-color: #1572e8 !important
+  border-bottom-color: #31BD82 !important;
 }
 
 .quick-actions.quick-actions-primary .quick-actions-header {
@@ -7446,15 +7446,15 @@ label.error {
 }
 
 .btn-primary {
-  background: #1572e8 !important;
-  border-color: #1572e8 !important
+  background: #369faf !important;
+  border-color: #31BD82 !important;
 }
 
 .btn-primary:disabled,
 .btn-primary:focus,
 .btn-primary:hover {
-  background: #1572e8 !important;
-  border-color: #1572e8 !important
+  background: #369faf !important;
+  border-color: #31BD82 !important;
 }
 
 .btn-secondary {
@@ -7562,8 +7562,8 @@ label.error {
 }
 
 .btn-border.btn-primary {
-  color: #1572e8 !important;
-  border: 1px solid #1572e8 !important
+  color: #369faf !important;
+  border: 1px solid #31BD82 !important;
 }
 
 .btn-border.btn-secondary {
@@ -7621,11 +7621,11 @@ label.error {
 }
 
 .btn-link.btn-primary {
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .btn-link.btn-primary:hover {
-  color: #1572e8 !important
+  color: #31BD82 !important;
 }
 
 .btn-link.btn-secondary {
@@ -8104,7 +8104,7 @@ label.error {
 }
 
 .feed-item-primary::after {
-  background: #1572e8 !important
+  background: #31BD82 !important;
 }
 
 .feed-item-secondary::after {
@@ -8280,7 +8280,7 @@ label.error {
 }
 
 .timeline-badge.primary {
-  background-color: #1572e8 !important
+  background-color: #31BD82 !important;
 }
 
 .timeline-badge.secondary {
@@ -14465,11 +14465,11 @@ body[data-background-color=dark] .board {
 }
 
 .bg-primary {
-  background-color: #1572e8 !important
+  background-color: #31BD82 !important;
 }
 
 .bg-primary2 {
-  background-color: #1269db !important
+  background-color: #369faf !important;
 }
 
 .bg-secondary {
@@ -14527,7 +14527,7 @@ body[data-background-color=dark] .board {
 }
 
 .bg-primary-gradient {
-  background: #1572e8 !important;
+  background: #369faf !important;
   background: -webkit-linear-gradient(legacy-direction(-45deg), #06418e, #1572e8) !important;
   background: linear-gradient(-45deg, #06418e, #1572e8) !important
 }
