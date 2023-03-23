@@ -55,7 +55,7 @@ this.quotion = item;
     this.loadCommonData();
     this.loadPropertyData(this.quotion.propertyData);
     this.pdf.content.push({fontSize: 10,
-      text: 'Giá trị chính xác sẽ được EXIMA xác định sau khi khảo sát thực tế hiện trường',
+      text: 'Giá trị chính xác sẽ được HTH xác định sau khi khảo sát thực tế hiện trường',
       alignment: 'center',
       italics: true,
      margin: 0 },
@@ -87,7 +87,7 @@ return this.pdf;
             // star-sized columns fill the remaining space
             // if there's more than one star-column, available width is divided equally
             width: '80%',
-            text: 'CÔNG TY CỔ PHẦN THẨM ĐỊNH GIÁ EXIM',
+            text: 'CÔNG TY CỔ PHẦN THẨM ĐỊNH GIÁ HTH',
           },
           {
             fontSize: 9,
@@ -119,7 +119,7 @@ return this.pdf;
         // star-sized columns fill the remaining space
         // if there's more than one star-column, available width is divided equally
         text: 'INTERIM APPRAISAL RESULT',
-        color: '#1572e8',
+        color: '#3161BD',
       },
       // margin: [horizontal, vertical
       {
@@ -136,7 +136,7 @@ return this.pdf;
               {
                 text: 'I. Thông tin chung về khách hàng thẩm định giá',
                 style: 'tableHeader',
-                fillColor: '#1572e8',
+                fillColor: '#34C7B2',
                 color: 'white',
 
                 alignment: 'left',
@@ -147,7 +147,7 @@ return this.pdf;
             [
               'Kính gửi',this.quotion.userData.name
             ],
-            ['Về chúng tôi:', 'Công ty cổ phần thẩm định giá Exim - EXIMA'],
+            ['Về chúng tôi:', 'Công ty cổ phần thẩm định giá HTH'],
             ['Cán bộ tiếp nhận', this.quotion.userData.requestBy],
             ['cán bộ thực hiện ', this.quotion.userData.responseBy],
           ],
@@ -166,7 +166,7 @@ return this.pdf;
               {
                 text: 'II. Kết quả thẩm định giá sơ bộ',
                 style: 'tableHeader',
-                fillColor: '#005dad',
+                fillColor: '#369FAF',
                 color: 'white',
                 alignment: 'left',
                 colSpan: 5,
@@ -230,7 +230,7 @@ return this.pdf;
         { bold: true, text: 'Hạng mục', alignment: 'center' },
         { bold: true, text: 'Đơn giá',  alignment: 'center' },
         { bold: true, text: 'diện tích',alignment: 'center' },
-        { bold: true, text: 'Hệ số',  alignment: 'center' },
+        { bold: true, text: 'CLCL',  alignment: 'center' },
         { bold: true, text: 'Giá trị ước tính', alignment: 'center', width: '*' },
       ],
         )
@@ -252,7 +252,7 @@ itemList.forEach(element => {
   tempList.push([ { fontSize: 11, text: element.name, alignment: 'left' },
                   { fontSize: 11, text: element.unitPrice.toLocaleString("en-US") + ' VNĐ', alignment: 'right' },
                   { fontSize: 11, text: element.amount.toLocaleString("en-US"), alignment: 'right' },
-                  { fontSize: 11, text: element.quality +' %', alignment: 'right' },
+                  { fontSize: 11, text: ((element.name=="CTXD")? 100:element.quality ) +' %', alignment: 'right' },
                   { fontSize: 11, text: element.totalPrice.toLocaleString("en-US")+ ' VNĐ', alignment: 'right', width: '*' },
                 ]);
                  console.log('done');

@@ -1,3 +1,4 @@
+import { RegisterComponent } from './pages/register/register.component';
 import { StandardGuard } from './standard.guard';
 import { AdminLayoutModule } from './containers/admin-layout/admin-layout.module';
 import { NgModule } from '@angular/core';
@@ -7,6 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 const routes: Routes = [
   {path: '', loadChildren: ()=>AdminLayoutModule, canActivateChild:[StandardGuard]},
   {path: 'login',component: LoginComponent},
+  {path: 'register',component: RegisterComponent},
 ];
 
 @NgModule({

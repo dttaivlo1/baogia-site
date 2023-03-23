@@ -1,9 +1,8 @@
 export interface Index{
-  id: String,
-  prop_id: String,
-  name:String,
+  id: String|null,
+  indexName:String,
   unitPrice: number,
-  amount: number,
-  quality: number,
+  area: number,
+  CLCL: number,
   totalPrice : number,
 }

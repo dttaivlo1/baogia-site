@@ -29,11 +29,11 @@ export class CreateComponent implements OnInit {
   dd = templatePDF;
   indexes: Index = {
     id: '',
-    prop_id: '',
-    name: '',
+
+    indexName: '',
     unitPrice: 1000,
-    amount: 50,
-    quality: 0.8,
+    area: 50,
+    CLCL: 0.8,
     totalPrice: 1000 * 50 * 0.8,
   };
   rfCreate: FormGroup = new FormGroup({});
@@ -57,27 +57,30 @@ export class CreateComponent implements OnInit {
       userData: this.fb.group({
         name: new FormControl('', [Validators.required]),
         phone: new FormControl('', Validators.required),
-        requestBy: new FormControl('dương tấn tài', Validators.required),
+        requestBy: new FormControl('', Validators.required),
         responseBy: new FormControl('', Validators.required),
+        createAt:new FormControl(new Date())
       }),
       propertyData: this.fb.array([]),
     });
+
     this.propertyData.valueChanges.subscribe((data) => {
       //console.log(data);
       data.forEach((element: Property) => {
         for (let i = 0; i < this.indexData(data.indexOf(element)).length; i++) {
           const val = this.indexData(data.indexOf(element)).at(i)
-            .value as Index;
+            .value
           // console.log(val.unitPrice*val.amount*val.quality);
           this.indexData(data.indexOf(element))
             .at(i)
             .patchValue(
               {
-                totalPrice: val.unitPrice * val.amount * (val.quality/100),
+                totalPrice: val.unitPrice * val.amount* ((val.name=="CTXD")?val.quality/100: 1),
               },
               { emitEvent: false }
             );
           //    console.log(this.indexData(data.indexOf(element)).at(i).value);
+          console.log((val.indexName=="CTXD"));
         }
       });
     });
@@ -85,11 +88,11 @@ export class CreateComponent implements OnInit {
   propertyForm() {
     return this.fb.group({
       id: 1,
-      name: 'a',
-      address: 'a',
-      define: 'a',
-      planning: '',
-      source: '',
+      name: null,
+      address: null,
+      define: null,
+      planning: null,
+      source: null,
       indexData: this.fb.array([]),
     });
   }
@@ -126,8 +129,7 @@ export class CreateComponent implements OnInit {
     this.propertyData.removeAt(id);
   }
   onSubmit(): void {
-    this.quotation = this.rfCreate.value.userData as Quotation;
-    this.quotationService.addQuat(this.rfCreate.value.userData as Quotation);
+
    // this.dd = templatePDF;
    // this.pdfService.generatePDF(this.rfCreate.value);
   // this.dd.content[5].table.body.push([{bold: true,  fontSize: 13, text: 'Tổng giá trị:', alignment: 'center', colSpan: 3 },
@@ -139,7 +141,17 @@ export class CreateComponent implements OnInit {
   setPropertyID() {
     return 'dâd';
   }
-  demo() {
-    return { text: 'tài', fontSize: 15 };
+  createOj() {
+    this.quotation = this.rfCreate.value as Quotation;
+    console.log(this.rfCreate.value.userData);
+   this.quotationService.createQuotation(this.rfCreate.value).subscribe({
+    next: res=> {
+     console.log(res);
+   },
+   error (e){
+    console.log(e);
+   },
+   complete () {console.log("done!")}
+  });
   }
 }

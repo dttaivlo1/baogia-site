@@ -251,7 +251,7 @@ export const templatePDF = {
 
     },
     {fontSize: 10,
-       text: 'Giá trị chính xác sẽ được EXIMA xác định sau khi khảo sát thực tế hiện trường',
+       text: 'Giá trị chính xác sẽ được HTH Appraisal xác định sau khi khảo sát thực tế hiện trường',
        alignment: 'center',
        italics: true,
       margin: 0 },

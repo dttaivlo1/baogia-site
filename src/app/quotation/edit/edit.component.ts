@@ -1,4 +1,4 @@
-import { Property, properties } from './../../models/property';
+import { Property } from './../../models/property';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Quotation } from 'src/app/models/quotation';
@@ -15,13 +15,15 @@ export class EditComponent {
 props :  Property[] = [];
 
 quotationList : Quotation[] = [];
+a = new Date();
 quotation : Quotation ={
-  id: "1",
+  $key: "1",
   name: "Darin Hettinger",
   phone: "214.428.3497 x367",
   requestBy: "Deion",
   responseBy: "Jessika",
-  propertyValues: 32109,
+  propertyData: [ ],
+  createAt:this.a,
   status: "829647990"
 
 }
@@ -54,9 +56,7 @@ ngOnInit() {
   //   //  console.log("dit me no");
   //   }
   // })
-  this.quotationList = this.quotationService.getListQuat();
 
-this.getProperty(postId);
   //  .then(quotationList => this.quotationList = quotationList);
     if(this.quotationList.length > 0){
       this.quotation = this.quotationList[postId -1]
@@ -70,18 +70,5 @@ this.quotation = this.quotation
 //console.log(this.quotation);
 
 }
-getProperty(num: number){
- properties.forEach(elem =>{
-  if(elem.quotation_id == num.toString()){
-    this.props.push(elem);
-  }
-
- });
- this.props = this.props;
- console.log(this.props);
- return this.props;
-}
-
-
 
 }

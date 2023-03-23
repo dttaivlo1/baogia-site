@@ -244,7 +244,7 @@ label {
 
 /*    Layouts     */
 body {
-  min-height: 100vh;
+  min-height: 50vh;
   position: relative;
   background: #f9fbfd; }
 

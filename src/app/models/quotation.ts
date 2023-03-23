@@ -1,10 +1,14 @@
+import { Property } from "./property";
+
 export class Quotation {
-  id: string;
+  $key: string | null;
   name: string;
   phone: string;
   requestBy: string;
   responseBy: string;
-  propertyValues: number| '';
+  propertyData: Property[];
   status: boolean | null| string;
+  createAt: Date | null;
+
 
 }

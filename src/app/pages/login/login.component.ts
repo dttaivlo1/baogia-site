@@ -23,17 +23,9 @@ export class LoginComponent {
       });
   }
 onSubmit(){
-  this.login();
-}
-  login() {
-      const val = this.form.value;
-if(this.authService.login(val.username, val.password))
-
-{
-  this.router.navigate([''])
-  console.log("done");
-
+  const val = this.form.value;
+  this.authService.SignIn(val.username, val.password)
+ // this.login();
 }
 
-  }
 }

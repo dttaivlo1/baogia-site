@@ -2,7 +2,8 @@ import { QuotationService } from './../../services/quotation.service';
 import { Quotation } from 'src/app/models/quotation';
 import { Component, OnInit} from '@angular/core';
 import { UsersService } from 'src/app/users.service';
-import { properties, Property } from './../../models/property';
+import { Property } from './../../models/property';
+import { Index } from 'src/app/models';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -27,14 +28,23 @@ quotationList : Quotation[] = [];
       //   }, 3000);
       // //  console.log(this.showSpinner);
       // })
-this.quotationList = quotationService.getListQuat()
-     }
+      this.quotationService.getAll().subscribe({
+        next: quotation => {
+          this.quotationList = quotation
+          this.showSpinner = false;
+          console.log(this.quotationList);
+          setTimeout(() => {
+               }, 3000);
+            console.log(this.showSpinner);
+       },
+       error (e){
+        console.log(e);
+       },
+       complete () {console.log("done!")}
+      });
+    }
     ngOnInit() {
-   this.props = properties;
-      for (let i = 0; i < properties.length; i++) {
-        properties[i].quotation_id = ((i % 10) +1).toString();
 
-      }
      // console.log(this.props);
       //  .then(quotationList => this.quotationList = quotationList);
     }
@@ -58,10 +68,7 @@ this.quotationList = quotationService.getListQuat()
     isFirstPage(): boolean {
         return this.quotationList ? this.first === 0 : true;
     }
-    add(){
 
-      this.quotationList = [...this.quotationList]
-    }
 
     changeStatus(){
       if(this.create){

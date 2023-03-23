@@ -95,16 +95,16 @@
                           <div class="row justify-content-between justify-content-end">
                             <div class="col-sm-2">
                               <label>Đơn giá</label>
-                              <input   type="text" inputmode="decimal" pattern="[0-9,\.]*"  formControlName="unitPrice">
+                              <input class="form-control"  type="number" inputmode="decimal" pattern="[0-9,\.]*"  formControlName="unitPrice">
                             </div>
                             <div class="col">
                               <label>Diện tích</label>
-                              <input type="text" class="form-control" formControlName="amount">
+                              <input type="number" class="form-control" formControlName="amount">
                             </div>
                             <div class="col">
                               <label>CLCL</label>
                               <div class="input-group mb-3">
-                                <input type="text" class="form-control" formControlName="quality">
+                                <input type="number" class="form-control" formControlName="quality">
                               <div class="input-group-append">
                                 <span class="input-group-text">%</span>
                               </div>
@@ -114,7 +114,7 @@
                               <label>Thành tiền</label>
                              <div class="input-group mb-3">
 
-                              <input type="text" class="form-control" formControlName="totalPrice" readonly>
+                              <input type="text" class="form-control" formControlName="totalPrice">
                               <div class="input-group-append">
                                 <span class="input-group-text">VNĐ</span>
                               </div>
@@ -157,6 +157,7 @@
 
         <!-- <pre>{{ rfCreate.value | json }}</pre> -->
       </div>
+      <button class="btn btn-primary" type="submit" (click)="createOj()">Submit</button>
     </div>
   </div>
 </div>
