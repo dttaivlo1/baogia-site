@@ -12,9 +12,9 @@ import {
 import { Index } from '../models';
 import { JsonPipe } from '@angular/common';
 const httpOptions ={
-  headers:{'method':'POST', 'mode':'cors' }
+  headers:{'method':'POST' }
 }
-const apiUrl = 'http://localhost:8080/api/v1/quotation/';
+const apiUrl = 'https://backendhth.up.railway.app/api/v1/quotation/';
 @Injectable({
   providedIn: 'root',
 })
