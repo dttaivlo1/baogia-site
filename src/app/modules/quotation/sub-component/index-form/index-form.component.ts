@@ -25,7 +25,12 @@ export class IndexFormComponent implements OnInit {
       CLCL: ['', [Validators.required]],
       totalPrice: ['', [Validators.required, Validators.minLength(3)]],
     });
+    this.indexForm.valueChanges.subscribe(val => {
+      this.indexForm.value.totalPrice = val.unitPrice * val.unitPrice * val.CLCL;
+      console.log(this.indexForm.value.totalPrice);
+      });
   }
+  
   addIndex() {
     this.quotation.propertyData[this.selected].indexData.push(this.indexForm.value);
     console.log(this.quotation);

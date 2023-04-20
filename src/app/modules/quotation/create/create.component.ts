@@ -46,14 +46,14 @@ getProps(data){
 
 }
 getIndex(data){
-  
+  this.myData = data;
   console.log(this.myData);
-  this.submitProperty = false;
+  this.submitIndex = false;
+  this.next();
 }
 onSubmit() {
   console.log("a");
 }
-
 ngOnInit() {
   var a =document.querySelector('#stepper1') as HTMLElement;
   this.stepper = new Stepper(a, {

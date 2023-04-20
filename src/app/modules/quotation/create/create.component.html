@@ -5,68 +5,77 @@
       <div class="d">
 
         <div id="stepper1" class="  bs-stepper">
-       <div class="card">
-        <div class=" bs-stepper-header">
-          <div class="step" data-target="#test-l-1">
-            <button class="step-trigger">
-              <span class="bs-stepper-circle">1</span>
-              <span class="bs-stepper-label">Thông tin khách hàng</span>
-            </button>
+          <div class="card">
+            <div class=" bs-stepper-header">
+              <div class="step" data-target="#test-l-1">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">1</span>
+                  <span class="bs-stepper-label">Thông tin khách hàng</span>
+                </button>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-l-2">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">2</span>
+                  <span class="bs-stepper-cercle">Tài Sản thẩm định</span>
+                </button>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-l-3">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">3</span>
+                  <span class="bs-stepper-label">Các hạng mục</span>
+                </button>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-l-4">
+                <button class="step-trigger">
+                  <span class="bs-stepper-circle">4</span>
+                  <span class="bs-stepper-label">Validate</span>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="line"></div>
-          <div class="step" data-target="#test-l-2">
-            <button class="step-trigger">
-              <span class="bs-stepper-circle">2</span>
-              <span class="bs-stepper-cercle">Tài Sản thẩm định</span>
-            </button>
-          </div>
-          <div class="line"></div>
-          <div class="step" data-target="#test-l-3">
-            <button class="step-trigger">
-              <span class="bs-stepper-circle">3</span>
-              <span class="bs-stepper-label">Các hạng mục</span>
-            </button>
-          </div>
-          <div class="line"></div>
-          <div class="step" data-target="#test-l-4">
-            <button class="step-trigger">
-              <span class="bs-stepper-circle">4</span>
-              <span class="bs-stepper-label">Validate</span>
-            </button>
-          </div>
-        </div>
-       </div>
           <div class="bs-stepper-content">
-              <div id="test-l-1" class="content">
-               <app-customer-form (addCustomer)="getCustomer($event)"></app-customer-form>
-         
-                 <button (click)="next()" class=" btn btn-primary pull-right" type="button" [disabled]="submitCustomer">Next</button>
+            <div id="test-l-1" class="content">
+              <app-customer-form (addCustomer)="getCustomer($event)"></app-customer-form>
+
+              <button (click)="next()" class=" btn btn-primary pull-right" type="button"
+                [disabled]="submitCustomer">Next</button>
+            </div>
+            <div id="test-l-2" class="content">
+              <div *ngIf="submitCustomer== false; else elseBlock">
+                <app-property-form [quotation]="myData" (addProps)="getProps($event)"></app-property-form>
+                <button (click)="next()" class="btn btn-primary pull-right" type="button"
+                  [disabled]="submitProperty">Next</button>
               </div>
-              <div id="test-l-2" class="content">
-                <div *ngIf="submitCustomer== false; else elseBlock">
-                  <app-property-form [quotation]="myData" (addProps)="getProps($event)"></app-property-form>
-                <button (click)="next()" class="btn btn-primary pull-right" type="button"  [disabled]="submitProperty">Next</button>
-                </div>
-                <ng-template #elseBlock>Vui lòng hoàn tất bước trước đó</ng-template>
-              </div>
-              <div id="test-l-3" class="content">
-                <div *ngIf="submitProperty== false; else elseBlock">
-                  <app-index-form [quotation]="myData" (addIndexes)="getIndex($event)"> </app-index-form>
-                  <button (click)="next()" class="btn btn-primary pull-right" type="button"  [disabled]="submitIndex">Next</button>
-               
+              <ng-template #elseBlock>Vui lòng hoàn tất bước trước đó</ng-template>
+            </div>
+            <div id="test-l-3" class="content">
+              <div *ngIf="submitProperty== false; else elseBlock">
+                <app-index-form [quotation]="myData" (addIndexes)="getIndex($event)"> </app-index-form>
+                <button (click)="next()" class="btn btn-primary pull-right" type="button"
+                  [disabled]="submitIndex">Next</button>
+
               </div>
               <ng-template #elseBlock>Content to render when condition is false.</ng-template>
+            </div>
+            <div id="test-l-4" class="content">
+              <div *ngIf="submitProperty== false; else elseBlock">
+                <div class="alert alert-primary" role="alert">
+                  Thêm mới thành công
+                </div>
+                <button class="button"> <a class="buttion" routerLink="../baogia">Lưu lại</a>
+                </button>
               </div>
-              <div id="test-l-4" class="content">
-                
-                <button (click)="next()" class="btn btn-primary pull-right" type="button"  >Next</button>
-              </div>
+              <ng-template #elseBlock>Content to render when condition is false.</ng-template>
+            </div>
           </div>
         </div>
 
       </div>
     </div>
-   
+
   </div>
 
 
