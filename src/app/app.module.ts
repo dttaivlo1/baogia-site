@@ -14,14 +14,14 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './pages/register/register.component';
-
+import { AuthService } from './core/services/auth.service';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    LoginComponent, 
     RegisterComponent,
   ],
   imports: [
@@ -39,7 +39,7 @@ AngularFireAuthModule, // Only required for auth features,
 AngularFireStorageModule ,
 AngularFireDatabaseModule,// Only required for storage features
   ],
-  providers: [AuthService],
+  providers: [AuthService, { provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,4 @@
+ng-template > td > button{
+  padding: 5px, 5px, 5px, 5px;
+}
+@import '~bs-stepper/dist/css/bs-stepper.min.css';

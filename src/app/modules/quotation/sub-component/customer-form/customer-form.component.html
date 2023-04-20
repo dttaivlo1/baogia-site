@@ -1,0 +1,48 @@
+<div class="card container">
+  <div class="card-header">
+    <p>Thông tin khách hàng</p>
+  </div>
+  <div class="card-body">
+    <form  [formGroup]="customerForm">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Về khách hàng</label>
+        <textarea type="email" class="form-control" id="exampleFormControlInput1" formControlName="name" placeholder="Ngân hàng"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Số điện thoại</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="phone" placeholder="name@example.com">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Về công ty</label>
+      </div>
+     <div class="row">
+      <div class="form-group form-floating-label col-sm-6">
+        <select class="form-control input-border-bottom" id="selectFloatingLabel" formControlName="requestBy" required="">
+          <option></option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+        <label for="selectFloatingLabel" class="placeholder">Nhân viên tiếp nhận</label>
+      </div>
+      <div class="form-group form-floating-label col-sm-6">
+        <select class="form-control input-border-bottom" id="selectFloatingLabel"  formControlName="responseBy" required="">
+          <option></option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+        <label for="selectFloatingLabel" class="placeholder">Nhân viên phản hồi</label>
+      </div>
+     </div>
+    <div class="card-footer">  <button  class=" btn btn-primary" type="button" (click)="onSubmit()">Kiểm tra</button></div>
+  
+     
+    </form>
+  </div>
+  
+</div>

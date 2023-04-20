@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +25,6 @@ export class RegisterComponent {
   }
   onSubmit(){
     console.log(this.registerForm.value);
-  this.authService.SignUp(this.registerForm.value);
   }
   ValidatorsPass(a, b){
     return a==b ? true: false

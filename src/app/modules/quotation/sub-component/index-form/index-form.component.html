@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card">
+                <img class="card-img-top" src="holder.js/100x180/" alt="">
+                <div class="card-header">
+                   <h2> Danh Sách  tài sản</h2>
+                    <select class="form-control form-control-lg"   [(ngModel)]="selected"
+                        id="largeSelect">
+                        <option value="" disabled selected>Vui lòng chọn tài sản</option>
+                        <option  [value]="i" *ngFor="let item of quotation.propertyData; index as i" >{{item.propertyName}}</option>
+                    </select>
+                 
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card container col-sm-8">
+ <div class="card-header">
+    <h2>Thêm mới hạn mục</h2>
+ </div>
+        <div class="card-body">
+            <form [formGroup]="indexForm" (ngSubmit)="addIndex()">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="exampleFormControlInput1">Tên hạng mục</label>
+                        <input type="text" class="form-control" formControlName="indexName"
+                            id="exampleFormControlInput1" placeholder="Ngân hàng">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="exampleFormControlInput2">Đơn giá</label>
+                        <input type="text" class="form-control" formControlName="unitPrice"
+                        id="exampleFormControlInput1" placeholder="Ngân hàng">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Diện tích</label>
+                    <input type="text" class="form-control" formControlName="area"
+                    id="exampleFormControlInput3" placeholder="Ngân hàng">
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="exampleFormControlInput3">CLCL</label>
+                        <input type="text" class="form-control" formControlName="CLCL"
+                            id="exampleFormControlInput3" placeholder="Ngân hàng">
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="exampleFormControlInput4">Thành tiền</label>
+                        <input type="text" class="form-control" formControlName="totalPrice"
+                            id="exampleFormControlInput4" placeholder="Ngân hàng">
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="exampleFormControlInput5">Nguồn thông tin</label>
+                        <input type="text" class="form-control" formControlName="propertySourse"
+                            id="exampleFormControlInput5" placeholder="Ngân hàng">
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <button class=" btn btn-primary" type="submit">Thêm tài sản</button>
+                    <button class=" btn btn-primary pull-right" type="button" (click)="onSubmit()">Kiểm tra</button>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="card-footer">
+
+        </div>
+
+    </div>
+</div>
+<div class="card">
+    <table class="table table-sm table-head-bg-primary mb-3">
+        <thead>
+            <tr>
+              <th>dădad</th>
+              <th>dădad</th>
+              <th>dădad</th>
+              <th>dădad</th>
+              <th>dădad</th>
+              <th>dădad</th>
+            </tr>
+        </thead>
+      
+        <tbody  *ngIf="getIndexList().length != 0">
+            <tr *ngFor="let ind of getIndexList();index as i">
+                <td>{{i+1}}</td>
+                <td>{{ind.indexName}}</td>
+                <td>{{ind.unitPrice}}</td>
+                <td>{{ind.area}}</td>
+                <td>{{ind.CLCL}}</td>
+                <td>{{ind.totalPrice}}</td>
+            </tr>
+
+        </tbody>
+       
+    </table>
+</div>

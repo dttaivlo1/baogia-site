@@ -1,0 +1,121 @@
+<div class="main-panel">
+
+  <div class="content">
+
+    <div class="page-inner">
+
+
+      <div class="clearfix">
+        <span class="float-left">
+          <h4 class="page-title">Danh Sách khách hàng</h4>
+        </span>dăd
+        <span class="float-right"> <button class="btn btn-primary btn-round" routerLink="create"><i
+              class="fa-solid fa-plus"></i> Thêm mới</button></span>
+
+      </div>
+
+
+      <div *ngIf="create">
+        <app-create>
+        </app-create>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex align-items-right">
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary btn-border" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Tìm kiếm</button>
+                      <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        aria-describedby="basic-addon1"
+                        (input)="dt.filterGlobal($any($event.target).value, 'contains')">
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="card-body">
+              <!-- Modal -->
+
+              <circle-progress *ngIf="showSpinner" [percent]="100" [radius]="100" [outerStrokeWidth]="16"
+                [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true"
+                [animationDuration]="10000"></circle-progress>
+              <div class="table-responsive">
+
+
+                <p-table #dt [value]="quotationList" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                  [globalFilterFields]="['name','country.name','representative.name','status']"
+                  currentPageReportTemplate="Đang hiển thị từ {first} đến {last} trong tổng số {totalRecords} bản ghi"
+                  [rowsPerPageOptions]="[5,10,25,50]" [styleClass]="sm" >
+                  <ng-template pTemplate="header" class="table-bordered-bd-warning">
+                    <tr style="text-align: center;" >
+                      <th style="max-width: 70px;">Mã Số báo giá</th>
+                      <th>Khách hàng</th>
+                      <th>Tiếp nhận bởi</th>
+                      <th>Trạng thái</th>
+
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-quotation>
+                    <tr>
+                      <td>BGSB{{quotation.id}}</td>
+                      <td class="text-info">{{quotation.name}}
+                        <div class="dropdown pull-right">
+
+                          <a style="cursor: pointer; color: #369faf" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="false" ><i class="fa-solid fa-ellipsis"></i></a>
+                      <div class=" dropdown-menu" aria-labelledby="triggerId" style="z-index: 1; position: relative;">
+                        <h5 class="dropdown-header">Thao tác</h5>
+                        <a class="dropdown-item primary" href="#">
+                          <h4 style="text-align: center;" class="text-success py-0" (click)="showAlert(1)">In sơ bộ</h4>
+                        </a>
+                        <a class="dropdown-item primary" href="#">
+                          <h4 style="text-align: center;" class="text-info py-0" (click)="showAlert(2)">In trình kí</h4>
+                        </a>
+
+                        <a class="dropdown-item primary" routerLink="edit/{{quotation.id}}">
+                          <h4 style="text-align: center;" class="text-warning py-0">Xem báo giá</h4>
+                        </a>
+
+                        <a class="dropdown-item primary" href="#">
+                          <h4 style="text-align: center;" class="text-danger py-0" (click)="showAlert(4)">Xoá báo giá</h4>
+                        </a>
+
+
+                      </div>
+                    </div>
+                      </td>
+                      <td>{{quotation.requestBy}}</td>
+                      <div *ngIf="quotation.status==true;then content else other_content"></div>
+                      <ng-template #content>
+                        <td>Đang xử lí</td>
+                      </ng-template>
+                      <ng-template #other_content>
+                        <td>Đã phản hồi</td>
+                      </ng-template>
+
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="paginatorleft">
+                    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                  </ng-template>
+                  <ng-template pTemplate="paginatorright">
+                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card">
+        <img class="card-img-top" src="holder.js/100x180/" alt="">
+        <div class="card-header">
+          Thông tin khách hàng
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="row ml-3">Họ tên</div>
+              <div class="row ml-3">SĐT</div>
+              <div class="row ml-3">Nhân viên tiếp nhận</div>
+              <div class="row ml-3">Trạng thái</div>
+            </div>
+            <div class="col-sm-8">
+              <div class="row ml-3">{{quotation.name}}</div>
+              <div class="row ml-3">{{quotation.phone}}</div>
+              <div class="row ml-3">{{quotation.requestBy}}</div>
+              <div class="row ml-3">Chưa phản hồi</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card container col-sm-8">
+
+    <div class="card-body">
+      <form [formGroup]="propertyForm" (ngSubmit)="addProperty()">
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="exampleFormControlInput1">Tên Tài Sản</label>
+            <textarea type="text" class="form-control" formControlName="propertyName" id="exampleFormControlInput1"
+              placeholder="Ngân hàng"></textarea>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="exampleFormControlInput2">Địa chỉ</label>
+            <textarea type="text" class="form-control" formControlName="propertyAddress" id="exampleFormControlInput2"
+              placeholder="Ngân hàng"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Về công ty</label>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-4">
+            <label for="exampleFormControlInput3">mô Tả</label>
+            <input type="text" class="form-control" formControlName="propertyDef" id="exampleFormControlInput3"
+              placeholder="Ngân hàng">
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="exampleFormControlInput4">Quy hoạch</label>
+            <input type="text" class="form-control" formControlName="propertyPlaning" id="exampleFormControlInput4"
+              placeholder="Ngân hàng">
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="exampleFormControlInput5">Nguồn thông tin</label>
+            <input type="text" class="form-control" formControlName="propertySourse" id="exampleFormControlInput5"
+              placeholder="Ngân hàng">
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <button class=" btn btn-primary" type="submit">Thêm tài sản</button>
+          <button class=" btn btn-primary pull-right" type="button" (click)="onSubmit()">Kiểm tra</button>
+        </div>
+
+
+      </form>
+    </div>
+    <div class="card-footer">
+
+    </div>
+
+  </div>
+</div>
+<div class="card">
+  <table class="table table-sm table-head-bg-primary mb-3">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Tên Tài sản</th>
+        <th scope="col">Địa chỉ</th>
+        <th scope="col">Mô tả</th>
+        <th scope="col">Quy hoạch</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let property of propertyList;index as i">
+      <tr>
+        <td>{{i+1}}</td>
+        <td>{{property.propertyName}}</td>
+        <td>{{property.propertyAddress}}</td>
+        <td>{{property.propertyDef}}</td>
+        <td>{{property.propertyPlaning}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
