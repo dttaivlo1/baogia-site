@@ -52,11 +52,12 @@ export class AuthService {
       });
   }
 
+  
 
   //////////////////////////////
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
-  return true
+  return false
   }
   // Sign in with Google
   GoogleAuth() {

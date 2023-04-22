@@ -1,10 +1,10 @@
 import { Index } from "./index";
 
 export interface Property {
-  id: string;
-  address: string | null;
-  planning: string | null;
-  dataSource: string | null;
+  propertyName: string;
+  propertyAddress: string | null;
+  propertyPlanning: string | null;
+  propertySource: string | null;
+  propertyDef: string | null;
   indexData: any[];
 }
-

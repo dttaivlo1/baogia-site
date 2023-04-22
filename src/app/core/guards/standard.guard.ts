@@ -12,10 +12,10 @@ export class StandardGuard implements CanActivate, CanActivateChild, CanDeactiva
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      if(this.authService.isLoggedIn !== true) {
-        this.router.navigate(['login'])
+      if(this.authService.isLoggedIn) {
+       return true;
       }
-      return true;
+       return  this.router.navigate(['/login'])
 
   }
   canActivateChild(

@@ -43,7 +43,7 @@ export class IndexFormComponent implements OnInit {
       'You clicked the button!',
       'success'
     )
-  
+
 }
 getIndexList():any[]{
   return this.quotation.propertyData[this.selected].indexData;

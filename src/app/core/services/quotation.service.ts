@@ -12,9 +12,19 @@ import { Index } from '../models';
 import { JsonPipe } from '@angular/common';
 import { Quotation } from '../models/quotation';
 import { BaseURL } from '../configs/constants/api-command.constant';
+import { Header } from 'primeng/api';
 const httpOptions ={
-  headers:{'method':'POST' }
-}
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '',
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+    'key': 'x-api-key',
+    'value': 'NNctr6Tjrw9794gFXf3fi6zWBZ78j6Gv3UCb3y0x',
+  }),
+};
+
 const apiUrl = BaseURL.BASE_API_URL + BaseURL.API_QUOTATION;
 @Injectable({
   providedIn: 'root',
@@ -44,12 +54,12 @@ this.quotationsRef= this.db.list('quotations');
 
   getAll():Observable<Quotation[]> {
 
-    return this.httpClient.post<Quotation[]>(apiUrl+'/getAllQuotation',{}).pipe(
+    return this.httpClient.get<Quotation[]>(apiUrl+'/getAllQuotation', httpOptions).pipe(
     )
   }
   createQuotation(formData) {
     console.log(formData);
-    return this.httpClient.post(apiUrl+'create',formData,httpOptions).pipe(
+    return this.httpClient.post(apiUrl+'/create',formData,httpOptions).pipe(
   tap( // Log the result or error
   {
     next: (data) => console.log(data),

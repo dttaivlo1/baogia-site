@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { Property } from 'src/app/core/models/property';
 import { Quotation } from 'src/app/core/models/quotation';
 import Swal from 'sweetalert2';
 import { CLIENT_RENEG_LIMIT } from 'tls';
@@ -14,6 +15,7 @@ export class PropertyFormComponent  implements OnInit {
   @Output() addProps: EventEmitter<any> = new EventEmitter<any>();
   propertyList: any = [];
   propertyForm: FormGroup;
+  property : Property;
   constructor(private fb: FormBuilder) {}
   ngOnInit(): void {
    
@@ -21,13 +23,14 @@ export class PropertyFormComponent  implements OnInit {
       propertyName: ['', [Validators.required]],
       propertyAddress: ['', [Validators.required]],
       propertyDef: ['', [Validators.required]],
-      propertySourse: ['', [Validators.required]],
-      propertyPlaning: ['', [Validators.required]],
+      propertySource: ['', [Validators.required]],
+      propertyPlanning: ['', [Validators.required]],
       indexData : new FormArray([], [Validators.required]),
     });
   }
   addProperty(){
-    this.propertyList.push(this.propertyForm.value);
+    this.property  = this.propertyForm.value;
+    this.propertyList.push(this.property);
     this.propertyForm.reset();
   }
   onSubmit() {

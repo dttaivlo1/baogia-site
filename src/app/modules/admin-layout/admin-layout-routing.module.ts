@@ -10,7 +10,6 @@ const routes: Routes = [
 
     {path: 'baogia', loadChildren: () => QuotationModule},
     {path: 'quan-li-nhan-vien', loadChildren: ()=>UserManagementModule},
-    {path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
   ]},
 
 ];

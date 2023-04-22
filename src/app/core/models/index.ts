@@ -3,6 +3,6 @@ export interface Index{
   indexName:String,
   unitPrice: number,
   area: number,
-  CLCL: number,
+  clcl: number,
   totalPrice : number,
 }

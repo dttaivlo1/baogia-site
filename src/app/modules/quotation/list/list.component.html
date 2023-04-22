@@ -61,6 +61,7 @@
                       <th>Khách hàng</th>
                       <th>Tiếp nhận bởi</th>
                       <th>Trạng thái</th>
+                      <th>Thao tác</th>
 
                     </tr>
                   </ng-template>
@@ -74,11 +75,11 @@
                           aria-expanded="false" ><i class="fa-solid fa-ellipsis"></i></a>
                       <div class=" dropdown-menu" aria-labelledby="triggerId" style="z-index: 1; position: relative;">
                         <h5 class="dropdown-header">Thao tác</h5>
-                        <a class="dropdown-item primary" href="#">
-                          <h4 style="text-align: center;" class="text-success py-0" (click)="showAlert(1)">In sơ bộ</h4>
+                        <a class="dropdown-item primary">
+                          <h4 style="text-align: center;" class="text-success py-0" (click)="showAlert(1, quotation)">In sơ bộ</h4>
                         </a>
                         <a class="dropdown-item primary" href="#">
-                          <h4 style="text-align: center;" class="text-info py-0" (click)="showAlert(2)">In trình kí</h4>
+                          <h4 style="text-align: center;" class="text-info py-0" (click)="showAlert(2, quotation)">In trình kí</h4>
                         </a>
 
                         <a class="dropdown-item primary" routerLink="edit/{{quotation.id}}">
@@ -86,7 +87,7 @@
                         </a>
 
                         <a class="dropdown-item primary" href="#">
-                          <h4 style="text-align: center;" class="text-danger py-0" (click)="showAlert(4)">Xoá báo giá</h4>
+                          <h4 style="text-align: center;" class="text-danger py-0" (click)="showAlert(4, quotation)">Xoá báo giá</h4>
                         </a>
 
 

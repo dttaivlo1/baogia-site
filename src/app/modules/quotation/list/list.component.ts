@@ -2,8 +2,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Property } from 'src/app/core/models/property';
 import { Quotation } from 'src/app/core/models/quotation';
+import { PdfService } from 'src/app/core/services/pdf.service';
 import { QuotationService } from 'src/app/core/services/quotation.service';
 import Swal from 'sweetalert2';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { CLIENT_RENEG_LIMIT } from 'tls';
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -19,7 +25,7 @@ export class ListComponent implements OnInit {
 
   rows = 10;
   showSpinner = true;
-  constructor(private quotationService: QuotationService) {
+  constructor(private quotationService: QuotationService, private pdfService: PdfService) {
 
     this.quotationService.getAll().subscribe({
       next: (quotation) => {
@@ -68,7 +74,7 @@ export class ListComponent implements OnInit {
       this.create = true;
     }
   }
-  showAlert(todo) {
+  showAlert(todo, quotation: Quotation) {
     switch (todo) {
       case 1: {
         Swal.fire({
@@ -82,12 +88,10 @@ export class ListComponent implements OnInit {
           confirmButtonText: 'Vẫn xoá!',
         }).then((result) => {
           if (result.isConfirmed) {
-            Swal.fire(
-              'Thành công!',
-              'Thao tác của bạn đã được thực hiện.',
-              'success'
-            );
-          }
+            console.log(quotation);
+            pdfMake.createPdf(this.pdfService.generatePDF(quotation)).open();
+            
+            }
         });
        break;
       }
