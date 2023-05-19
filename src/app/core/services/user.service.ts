@@ -21,7 +21,7 @@ export class UserService {
     return this.httpClient.post(BaseURL.BASE_API_URL+BaseURL.API_USER+'/getLs',{}).pipe(
     )
   }
-  getProduct() {
-    return this.httpClient.get('https://63e36e8465ae4931770ec117.mockapi.io/api/uipath/user',{}).pipe()
+  getUser() {
+    return this.httpClient.post('https://63e36e8465ae4931770ec117.mockapi.io/api/uipath/user',{}).pipe()
   }
 }

@@ -24,42 +24,63 @@
  </div>
         <div class="card-body">
             <form [formGroup]="indexForm" (ngSubmit)="addIndex()">
+                <div>
+                    <input #propsType class="form-check-input" type="checkbox" value="" [(ngModel)]="isChecked" (click)="doAction($event)" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Hạn mục này là Công trình xây dựng
+                    </label>
+                  </div>
                 <div class="row">
-                    <div class="form-group col-sm-6">
+
+                    <div class="form-group col-sm-12">
                         <label for="exampleFormControlInput1">Tên hạng mục</label>
                         <input type="text" class="form-control" formControlName="indexName"
                             id="exampleFormControlInput1" placeholder="Ngân hàng">
                     </div>
-                    <div class="form-group col-sm-6">
-                        <label for="exampleFormControlInput2">Đơn giá</label>
-                        <input type="text" class="form-control" formControlName="unitPrice"
-                        id="exampleFormControlInput1" placeholder="Ngân hàng">
-                    </div>
+                   
                 </div>
 
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Diện tích</label>
-                    <input type="text" class="form-control" formControlName="area"
-                    id="exampleFormControlInput3" placeholder="Ngân hàng">
-                </div>
+               
                 <div class="row">
-                    <div class="form-group col-sm-4">
-                        <label for="exampleFormControlInput3">CLCL</label>
-                        <input type="text" class="form-control" formControlName="CLCL"
-                            id="exampleFormControlInput3" placeholder="Ngân hàng">
+                    <div class=" form-group col-sm-4">
+                        <label for="integeronly">Đơn giá</label>
+                        <p-inputNumber inputId="integeronly" formControlName="unitPrice"
+                        id="exampleFormControlInput1" placeholder="Ngân hàng"></p-inputNumber>
                     </div>
                     <div class="form-group col-sm-4">
-                        <label for="exampleFormControlInput4">Thành tiền</label>
-                        <input type="text" class="form-control" formControlName="totalPrice"
-                            id="exampleFormControlInput4" placeholder="Ngân hàng">
+                        <label for="exampleFormControlInput1">Diện tích</label>
+                        <p-inputNumber inputId="integeronly"  formControlName="area"
+                        id="exampleFormControlInput3" placeholder="Ngân hàng"></p-inputNumber>
+                        
                     </div>
+                   
                     <div class="form-group col-sm-4">
-                        <label for="exampleFormControlInput5">Nguồn thông tin</label>
-                        <input type="text" class="form-control" formControlName="propertySource"
-                            id="exampleFormControlInput5" placeholder="Ngân hàng">
+                        <label for="exampleFormControlInput3">clcl</label>
+                        <p-inputNumber inputId="integeronly" formControlName="clcl" [disabled]="disableCLCL"
+                            id="exampleFormControlInput3" placeholder="Ngân hàng"></p-inputNumber>
                     </div>
+                   
+                   
 
                 </div>
+              <div class="row">
+                <div class="col-sm-6 ">
+                    </div>
+                <div class="form-group col-sm-6 ">
+                    <label for="exampleFormControlInput4">Thành tiền</label>
+                    <div class="input-group mb-3">
+                           
+                        <p-inputNumber 
+                        inputId="integeronly" 
+                        [readonly]="true"  
+                        formControlName="totalPrice" 
+                        aria-label="Amount (to the nearest dollar)" 
+                        [disabled]="true">
+                    </p-inputNumber>
+                    <span class="p-inputgroup-addon">VNĐ</span>
+                    </div>
+                </div>
+              </div>
                 <div class="card-footer">
                     <button class=" btn btn-primary" type="submit">Thêm tài sản</button>
                     <button class=" btn btn-primary pull-right" type="button" (click)="onSubmit()">Kiểm tra</button>
@@ -82,7 +103,7 @@
               <th>Tên hạng mục</th>
               <th>Đơn giá</th>
               <th>Diện tích</th>
-              <th>CLCL</th>
+              <th>clcl</th>
               <th>Tổng ti</th>
             </tr>
         </thead>
@@ -93,7 +114,7 @@
                 <td>{{ind.indexName}}</td>
                 <td>{{ind.unitPrice}}</td>
                 <td>{{ind.area}}</td>
-                <td>{{ind.CLCL}}</td>
+                <td>{{ind.clcl}}</td>
                 <td>{{ind.totalPrice}}</td>
             </tr>
 

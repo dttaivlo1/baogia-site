@@ -8,6 +8,7 @@ export class Quotation {
   responseBy: string;
   propertyData: any[];
   status: boolean | null| string;
+  state: boolean;
   createAt: Date | null;
 
   public constructor(init?: Partial<Quotation>) {

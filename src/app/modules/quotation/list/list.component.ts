@@ -20,23 +20,23 @@ export class ListComponent implements OnInit {
   props: Property[] = [];
   create = false;
   quotationList: Quotation[] = [];
-
+  staffList: [];
   first = 0;
 
   rows = 10;
   showSpinner = true;
   constructor(private quotationService: QuotationService, private pdfService: PdfService) {
-
+  
     this.quotationService.getAll().subscribe({
-      next: (quotation) => {
-        this.quotationList = quotation;
+      next: (quotation: any) => {
+        this.quotationList = quotation.data;
         this.showSpinner = false;
         console.log(this.quotationList);
         setTimeout(() => {}, 3000);
         console.log(this.showSpinner);
       },
       error(e) {
-        console.log(e);
+       Swal.fire('error', e.message, 'question');
       },
       complete() {
         console.log('done!');

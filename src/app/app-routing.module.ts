@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { AdminLayoutModule } from './modules/admin-layout/admin-layout.module';
 import { StandardGuard } from './core/guards/standard.guard';
+import * as path from 'path';
 
 const routes: Routes = [
   {path: '', loadChildren: ()=>AdminLayoutModule, canActivateChild:[StandardGuard]},
@@ -16,6 +17,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-
-
 }

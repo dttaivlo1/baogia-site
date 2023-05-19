@@ -41,21 +41,23 @@
               <app-customer-form (addCustomer)="getCustomer($event)"></app-customer-form>
 
               <button (click)="next()" class=" btn btn-primary pull-right" type="button"
-                [disabled]="submitCustomer">Next</button>
+                [disabled]="submitCustomer">Tiếp tục</button>
             </div>
             <div id="test-l-2" class="content">
               <div *ngIf="submitCustomer== false; else elseBlock">
                 <app-property-form [quotation]="myData" (addProps)="getProps($event)"></app-property-form>
                 <button (click)="next()" class="btn btn-primary pull-right" type="button"
-                  [disabled]="submitProperty">Next</button>
+                  [disabled]="submitProperty">Tiếp tục</button>
               </div>
               <ng-template #elseBlock>Vui lòng hoàn tất bước trước đó</ng-template>
             </div>
             <div id="test-l-3" class="content">
               <div *ngIf="submitProperty== false; else elseBlock">
+                
                 <app-index-form [quotation]="myData" (addIndexes)="getIndex($event)"> </app-index-form>
                 <button (click)="next()" class="btn btn-primary pull-right" type="button"
-                  [disabled]="submitIndex">Next</button>
+                  [disabled]="submitIndex">Bước cuối cùng</button>
+                  
 
               </div>
               <ng-template #elseBlock>Content to render when condition is false.</ng-template>
@@ -71,6 +73,8 @@
               <ng-template #elseBlock>Content to render when condition is false.</ng-template>
             </div>
           </div>
+          <button (click)="rollback()" class="btn btn-primary pull-left" type="button"
+                 >Hủy</button>
         </div>
 
       </div>

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Md5 } from 'ts-md5/dist/esm/md5';
 
 
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -11,20 +13,37 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-
-  registerForm:FormGroup;
-  constructor(private fb: FormBuilder, private authService: AuthService){
+  MD5 = new Md5();
+isLoading = '';
+  registerForm :FormGroup;
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
-        name: [null,[Validators.required]],
-        department: [null,[Validators.required]],
-        email: [null,[Validators.required]],
-        phone: [null,[Validators.required]],
-        password: [null,[Validators.required]],
-        re_password: [null,[Validators.required]],
+        firstName: ['',[Validators.required]],
+        lastName: ['',[Validators.required]],
+        email: ['',[Validators.required]],
+        address: ['',[Validators.required]],
+        phone: ['',[Validators.required]],
+        hashPW: ['',[Validators.required]],
+        re_password: ['',[Validators.required]],
   });
   }
   onSubmit(){
-    console.log(this.registerForm.value);
+    this.isLoading = 'is-loading';
+    this.authService.register(this.registerForm.value).subscribe(
+      data =>{
+       this.isLoading = '';
+   
+      },
+      (error) => {
+        Swal.fire(
+          'Dăng kí thất bại',
+          error,
+          'error')
+       this.isLoading = '';
+     });
+  }
+  clear(){
+    this.registerForm.reset();
   }
   ValidatorsPass(a, b){
     return a==b ? true: false

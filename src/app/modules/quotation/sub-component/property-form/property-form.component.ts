@@ -25,7 +25,7 @@ export class PropertyFormComponent  implements OnInit {
       propertyDef: ['', [Validators.required]],
       propertySource: ['', [Validators.required]],
       propertyPlanning: ['', [Validators.required]],
-      indexData : new FormArray([], [Validators.required]),
+      indexData : new FormArray([],),
     });
   }
   addProperty(){
@@ -42,5 +42,20 @@ export class PropertyFormComponent  implements OnInit {
       'success'
     )
   }
+  get propertyName() {
+    return this.propertyForm.get('name');
+   }
+   get propertyAddress() {
+    return this.propertyForm.get('propertyAddress');
+   }
+   get propertyDef() {
+    return this.propertyForm.get('propertyDef');
+   }
+   get propertySource() {
+    return this.propertyForm.get('propertySource');
+   }
+   get propertyPlanning() {
+    return this.propertyForm.get('propertyPlanning');
+   }
   
 }

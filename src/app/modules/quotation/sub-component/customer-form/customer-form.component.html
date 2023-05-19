@@ -6,11 +6,38 @@
     <form  [formGroup]="customerForm">
       <div class="form-group">
         <label for="exampleFormControlInput1">Về khách hàng</label>
-        <textarea type="email" class="form-control" id="exampleFormControlInput1" formControlName="name" placeholder="Ngân hàng"></textarea>
+        <textarea type="email" class="form-control" id="exampleFormControlInput1" formControlName="name" placeholder="..."></textarea>
+       
+      <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" >
+        <div *ngIf="name!.errors?.['required']"  >
+         <small class="text-danger">Vui lòng nhập tên khách hàng</small>
+        </div>
+        <div *ngIf="name!.errors?.['minlength']">
+<small class="text-danger">Tên khách hàng ít nhất 12 kí tự
+</small>
+        </div>
+        <div *ngIf="name!.errors?.['maxlength']">
+          <small class="text-danger">Tên khách hàng tối đa 250
+          </small>
+                  </div>
+      </div>
       </div>
       <div class="form-group">
         <label for="exampleFormControlInput1">Số điện thoại</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="phone" placeholder="name@example.com">
+        <input type="phone" class="form-control" id="exampleFormControlInput1" formControlName="phone" placeholder="...">
+        <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" >
+          <div *ngIf="phone!.errors?.['required']"  >
+           <small class="text-danger">Vui lòng nhập số điện thoại khách hàng</small>
+          </div>
+          <div *ngIf="phone!.errors?.['minlength']">
+  <small class="text-danger">SĐT khách hàng ít nhất 10 kí tự
+  </small>
+          </div>
+          <div *ngIf="phone!.errors?.['maxlength']">
+            <small class="text-danger">SĐT khách hàng tối đa 12 kí tự
+            </small>
+                    </div>
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleFormControlInput1">Về công ty</label>
@@ -18,31 +45,20 @@
      <div class="row">
       <div class="form-group form-floating-label col-sm-6">
         <select class="form-control input-border-bottom" id="selectFloatingLabel" formControlName="requestBy" required="">
-          <option></option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+          <option >Chọn nhân viên tiếp nhận</option>
+          <option *ngFor="let item of listUser; index as i" [value]="item.email">{{item.lastName}} ({{item.email}})</option>
         </select>
         <label for="selectFloatingLabel" class="placeholder">Nhân viên tiếp nhận</label>
       </div>
       <div class="form-group form-floating-label col-sm-6">
-        <select class="form-control input-border-bottom" id="selectFloatingLabel"  formControlName="responseBy" required="">
-          <option></option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <select class="form-control input-border-bottom" id="selectFloatingLabel" formControlName="responseBy" required="">
+          <option >Chọn nhân viên phản hồi</option>
+          <option *ngFor="let item of listUser; index as i" [value]="item.email">{{item.lastName}} ({{item.email}})</option>
         </select>
         <label for="selectFloatingLabel" class="placeholder">Nhân viên phản hồi</label>
       </div>
      </div>
-    <div class="card-footer">  <button  class=" btn btn-primary" type="button" (click)="onSubmit()">Kiểm tra</button></div>
-  
-     
+    <div class="card-footer">  <button  class=" btn btn-primary"title="Kiêm tra dữ liệu nhập vào" type="button" (click)="onSubmit()" [disabled]="!customerForm.valid">Kiểm tra</button></div>
     </form>
   </div>
-  
 </div>

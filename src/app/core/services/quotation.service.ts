@@ -13,7 +13,7 @@ import { JsonPipe } from '@angular/common';
 import { Quotation } from '../models/quotation';
 import { BaseURL } from '../configs/constants/api-command.constant';
 import { Header } from 'primeng/api';
-const httpOptions ={
+const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '',
@@ -37,10 +37,10 @@ export class QuotationService {
   propertyRef: AngularFireObject<any>;
   indexesRef: AngularFireList<any>;
   indexRef: AngularFireObject<any>
-  constructor(private db: AngularFireDatabase, private httpClient:HttpClient) {}
+  constructor(private db: AngularFireDatabase, private httpClient: HttpClient) { }
   // Create Quotation
   AddQuotation(quotation: Quotation) {
-this.quotationsRef= this.db.list('quotations');
+    this.quotationsRef = this.db.list('quotations');
     this.quotationsRef.push({
       name: quotation.name,
       phone: quotation.phone,
@@ -52,35 +52,39 @@ this.quotationsRef= this.db.list('quotations');
   }
   // Fetch Single Quotation Object
 
-  getAll():Observable<Quotation[]> {
+  getAll() {
 
-    return this.httpClient.get<Quotation[]>(apiUrl+'/getAllQuotation', httpOptions).pipe(
+    return this.httpClient.post(apiUrl + '/getAll', httpOptions).pipe(
+    )
+  }getInfo() {
+
+    return this.httpClient.post(apiUrl + '/searchgia', httpOptions).pipe(
     )
   }
   createQuotation(formData) {
-    console.log(formData);
-    return this.httpClient.post(apiUrl+'/create',formData,httpOptions).pipe(
-  tap( // Log the result or error
-  {
-    next: (data) => console.log(data),
-    error: (error) => console.log(error)
-  }
-  )
+    return this.httpClient.post(apiUrl + '/create', formData, httpOptions).pipe(
+      tap( // Log the result or error
+        {
+          next: (data) => console.log(data),
+          error: (error) => console.log(error)
+        }
+      )
     );
   }
-  selectQuotatation(id: string):Observable<Quotation> {
-   return  this.httpClient.get<Quotation>(apiUrl+id).pipe(
-       tap( // Log the result or error
-  {
-    next: (data) => console.log(data),
-    error: (error) => console.log(error)
-  }
-  )
+  selectQuotatation(id: string): Observable<Quotation> {
+    return this.httpClient.get<Quotation>(apiUrl + id).pipe(
+      tap( // Log the result or error
+        {
+          next: (data) => console.log(data),
+          error: (error) => console.log(error)
+        }
       )
-    }
+    )
   }
+  fetchItem(id) {
+    return this.httpClient.post(apiUrl + '/fetch', id, httpOptions);
+  }
+}
   // Update Quotation Object
-
-
 
 

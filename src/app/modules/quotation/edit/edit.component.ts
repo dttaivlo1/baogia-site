@@ -30,11 +30,13 @@ constructor(
 ngOnInit() {
   //console.log(this.showSpinner);
  const postId = this.activatedRoute.snapshot.params['id'];
-this.quotationService.selectQuotatation(postId).subscribe(quotation => {
-  this.quotation = quotation;
-  console.log("da lay thành công báo giá số:"+ postId);
+this.quotationService.fetchItem(postId).subscribe((r: any) => {
+  console.log(r)
+  if (r.data && r.errorCode === '0') {
+  this.quotation = r.data;
   this.showSpinner = false;
-
+  console.log(r)
+  }
 })
  // console.log(postId);
   // this.quotationService.requesting().subscribe(res =>{

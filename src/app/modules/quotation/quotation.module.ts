@@ -2,7 +2,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { PrimengModule } from './../primeng/primeng.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, DecimalPipe} from '@angular/common';
 import { QuotationRoutingModule } from './quotation-routing.module';
 import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
@@ -13,6 +13,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { CustomerFormComponent } from './sub-component/customer-form/customer-form.component';
 import { PropertyFormComponent } from './sub-component/property-form/property-form.component';
 import { IndexFormComponent } from './sub-component/index-form/index-form.component';
+import { PropertyInfoComponent } from './edit/property-info/property-info.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { IndexFormComponent } from './sub-component/index-form/index-form.compon
     EditComponent,
     CustomerFormComponent,
     PropertyFormComponent,
-    IndexFormComponent
+    IndexFormComponent,
+    PropertyInfoComponent
   ],
   imports: [
     FormsModule   ,
@@ -41,8 +43,7 @@ import { IndexFormComponent } from './sub-component/index-form/index-form.compon
       innerStrokeColor: "#C7E596",
       animationDuration: 100,
     })
-
-
-  ]
+  ],
+  providers: [CurrencyPipe, DecimalPipe]
 })
 export class QuotationModule { }

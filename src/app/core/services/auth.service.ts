@@ -1,93 +1,102 @@
-import { UserService } from './user.service';
-import { HttpClient } from '@angular/common/http';
-import { Injectable, NgZone } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Md5 } from 'ts-md5/dist/esm/md5';
 
-import * as auth from 'firebase/auth';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
+import { BaseURL } from '../configs/constants/api-command.constant';
+import { tap } from 'rxjs/internal/operators/tap';
 import { Router } from '@angular/router';
-import { User } from '../models/user';
+import Swal from 'sweetalert2';
+const apiUrl = BaseURL.BASE_API_URL + BaseURL.API_AUTHENTICATION;
+const httpOptions ={
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '',
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+    'key': 'x-api-key',
+    'value': 'NNctr6Tjrw9794gFXf3fi6zWBZ78j6Gv3UCb3y0x',
+  }),
+};
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   userData: any;
+  MD5 = new Md5();
+a = '';
   //
-  constructor(
-   private userService:UserService ,
-    private http: HttpClient,
-    public afs: AngularFirestore, // Inject Firestore service
-    public afAuth: AngularFireAuth, // Inject Firebase auth service
-    public router: Router,
-    public ngZone: NgZone
-    ) {
-      this.afAuth.authState.subscribe((user) => {
-        if (user) {
-          this.userData = user;
-          localStorage.setItem('user', JSON.stringify(this.userData));
-          JSON.parse(localStorage.getItem('user')!);
-        } else {
-          localStorage.setItem('user', 'null');
-          JSON.parse(localStorage.getItem('user')!);
-        }
-      });
-  }
-  SignIn(email: string, password: string) {
-    return this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        console.log(result.user);
-       // this.SetUserData(result.user);
-        this.afAuth.authState.subscribe((user) => {
-          if (user) {
-            this.router.navigate(['dashboard']);
-          }
-        });
-      })
-      .catch((error) => {
-        window.alert(error.message);
-      });
-  }
-
-  
-
+ constructor(private httpClient: HttpClient,  private router: Router){
+ }
   //////////////////////////////
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
-  return false
-  }
-  // Sign in with Google
-  GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-    });
-  }
-  // Auth logic to run auth providers
-  AuthLogin(provider: any) {
-    return this.afAuth
-      .signInWithPopup(provider)
-      .then((result) => {
+    const user = localStorage.getItem('status_login');
+    if (user === "true") {return true}  
+    else return false;
+ }
+ register(data){
+data.hashPW = this.MD5.appendStr(data.hashPW).end()
+  return this.httpClient.post(apiUrl + '/register', data, httpOptions).pipe(
+    tap(
+   {
+    next:(response: any) => {
+      if (response.data ==="0"){
+      Swal.fire(
+        'Thành cônng',
+        'Tài khoản đã được tạo thành công',
+      'success'
+      )
+      this.router.navigate(['./login']);
+      }
+      else{
+         Swal.fire(
+            'Dăng kí thất bại',
+             response.errorCode + ':  '+ response.errorDesc,
+            'error')
+      }
+     },
+     error: (err) => {
+      return err.status
+     }
+   }
+    )
+  );
+ }
+login(email, password){
+  
 
-        this.router.navigate(['/']);
-        //this.SetUserData(result.user);
-        window.alert(result);
-      })
-      .catch((error) => {
-        console.log(error);
-        window.alert(error);
-      });
-  }
-  /* Setting up user data when sign in with username/password,
-  sign up with username/password and sign in with social auth
-  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
+ this.a = this.MD5.appendStr(password).end() as string;
 
-  // Sign out
-  SignOut() {
-    return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['login']);
-    });
-  }
+return this.httpClient.post(apiUrl + '/login',{email, password: this.a} , httpOptions).pipe(
+    tap(
+   {
+    next:(response: any) => {
+      this.MD5 = new Md5();
+
+      if (response.data.errorCode ==="0"){
+       localStorage.setItem("status_login", "true")
+       this.router.navigate(['/']);
+      }
+      else{
+        Swal.fire(
+          'Thất Bại',
+          'Thông tin đăng nhập không chính xác, vui lòng thử lại',
+          'error'
+        )
+      }
+     },
+     error: (err) => {
+      Swal.fire(
+        'Thất Bại',
+        err.message,
+        'error'
+      )
+     }
+   }
+    )
+  );
+}
+SignOut(){
+  localStorage.clear();this.router.navigate(['/login']);
+}
 }

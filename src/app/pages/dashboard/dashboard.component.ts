@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import Stepper from 'bs-stepper';
+import {Md5} from 'ts-md5/dist/md5';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,14 +9,13 @@ import Stepper from 'bs-stepper';
 })
 export class DashboardComponent {
   private stepper: Stepper;
-
+  private MD5: Md5 = new Md5();
   next() {
     this.stepper.next();
 
   }
 
   onSubmit() {
-    console.log("a");
   }
 
   ngOnInit() {
@@ -24,6 +24,6 @@ export class DashboardComponent {
       linear: false,
       animation: true
     })
+    
   }
-
 }

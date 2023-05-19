@@ -10,9 +10,10 @@
           <form   [formGroup]="form" (ngSubmit)="onSubmit()">
             <input type="text" placeholder="Tài khoản" formControlName="username">
           <input type="password" placeholder="Mật Khẩu" formControlName="password">
-          <button type="submit" class="btn-login" [disabled]="!form.valid">
+          <button type="submit" class="btn-login {{isLoading}}" [disabled]="!form.valid">
           Đăng Nhập
           </button>
+         
             </form>
           <a href="#">Bạn quên mật khẩu?</a>
           <a routerLink="/register">

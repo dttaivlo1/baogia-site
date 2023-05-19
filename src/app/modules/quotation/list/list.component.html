@@ -8,7 +8,7 @@
       <div class="clearfix">
         <span class="float-left">
           <h4 class="page-title">Danh Sách khách hàng</h4>
-        </span>dăd
+        </span>
         <span class="float-right"> <button class="btn btn-primary btn-round" routerLink="create"><i
               class="fa-solid fa-plus"></i> Thêm mới</button></span>
 
@@ -21,6 +21,7 @@
 
       </div>
       <div class="row">
+       
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
@@ -30,38 +31,40 @@
                     <div class="input-group-append">
                       <button class="btn btn-primary btn-border" type="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Tìm kiếm</button>
-                      <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                      <input type="text" class="form-control" placeholder="Username" aria-label="Nhập thông tin"
                         aria-describedby="basic-addon1"
-                        (input)="dt.filterGlobal($any($event.target).value, 'contains')">
+                        (input)="dt.filterGlobal($any($event.target).value,  'contains')">
                     </div>
-
                   </div>
-
                 </div>
-
               </div>
             </div>
-
             <div class="card-body">
               <!-- Modal -->
-
-              <circle-progress *ngIf="showSpinner" [percent]="100" [radius]="100" [outerStrokeWidth]="16"
-                [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true"
-                [animationDuration]="10000"></circle-progress>
+                      <div *ngIf="showSpinner">
+                        <div class="loader loader-lg text-center" style="
+        margin-left: auto;
+        margin-right: auto;
+        "></div>
+                      </div>
               <div class="table-responsive">
 
 
-                <p-table #dt [value]="quotationList" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                
+              </div>
+            </div>
+          </div>
+          <p-table #dt [value]="quotationList" styleClass="p-datatable-striped" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
                   [globalFilterFields]="['name','country.name','representative.name','status']"
                   currentPageReportTemplate="Đang hiển thị từ {first} đến {last} trong tổng số {totalRecords} bản ghi"
                   [rowsPerPageOptions]="[5,10,25,50]" [styleClass]="sm" >
-                  <ng-template pTemplate="header" class="table-bordered-bd-warning">
+                  <ng-template pTemplate="header" >
                     <tr style="text-align: center;" >
                       <th style="max-width: 70px;">Mã Số báo giá</th>
                       <th>Khách hàng</th>
                       <th>Tiếp nhận bởi</th>
                       <th>Trạng thái</th>
-                      <th>Thao tác</th>
+                     
 
                     </tr>
                   </ng-template>
@@ -69,7 +72,7 @@
                     <tr>
                       <td>BGSB{{quotation.id}}</td>
                       <td class="text-info">{{quotation.name}}
-                        <div class="dropdown pull-right">
+                         <div class="dropdown pull-right">
 
                           <a style="cursor: pointer; color: #369faf" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
                           aria-expanded="false" ><i class="fa-solid fa-ellipsis"></i></a>
@@ -92,10 +95,10 @@
 
 
                       </div>
-                    </div>
+                    </div> 
                       </td>
                       <td>{{quotation.requestBy}}</td>
-                      <div *ngIf="quotation.status==true;then content else other_content"></div>
+                      <div *ngIf="quotation.status==false;then content else other_content"></div>
                       <ng-template #content>
                         <td>Đang xử lí</td>
                       </ng-template>
@@ -112,9 +115,6 @@
                     <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
                   </ng-template>
                 </p-table>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

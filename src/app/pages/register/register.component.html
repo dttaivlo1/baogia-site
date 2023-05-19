@@ -1,126 +1,71 @@
-
-  <div class="card col-sm-6" style="margin: 0 auto; /* Added */
-  float: none;  margin-top: 3%; ">
-    <div class="card-header">
-      <div class="card-title" style="text-align: center;">Đăng kí tài khoản báo giá</div>
-    </div>
-
-    <div class="content">
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
-
-        <div class="user-details">
-          <div class="row">
-            <div class="form-group col-sm-6">
-              <label class="details">Họ Tên:</label>
-              <input class="form-control" type="text" formControlName="name" placeholder="Enter your name" required>
-              <div *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)"
-             >
-
-            <div
-            *ngIf="registerForm.controls['name'].errors?.['required']">
-              <small class="text-danger">Vui lòng điên Họ tên!</small>
+<section class="h-100 bg-primary">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                alt="Sample photo" class="img-fluid"
+                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
             </div>
-            </div>
-            </div>
-            <div class="form-group col-sm-6">
-              <label class="details">Phòng ban:</label>
-              <input class="form-control"  type="text" formControlName="department" placeholder="Enter your department" required>
-              <div *ngIf="registerForm.controls['department'].invalid && (registerForm.controls['department'].dirty || registerForm.controls['department'].touched)"
-             >
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+                <h3 class="mb-5 text-center">ĐĂNG KÍ TÀI KHOẢN</h3>
 
-            <div
-            *ngIf="registerForm.controls['department'].errors?.['required']">
-              <small class="text-danger">VUi lòng điền phòng ban</small>
+             
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="form3Example1m" class="form-control form-control-lg"  formControlName="firstName"/>
+                        <label class="form-label" for="form3Example1m">Họ - Tên lót</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="form3Example1n" class="form-control form-control-lg" formControlName="lastName"/>
+                        <label class="form-label" for="form3Example1n">Tên</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="text" id="form3Example97" class="form-control form-control-lg" formControlName="email"/>
+                    <label class="form-label" for="form3Example97">Địa chỉ Email - (Dùng để đăng nhập)</label>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="form3Example1m" class="form-control form-control-lg"  formControlName="address"/>
+                        <label class="form-label" for="form3Example1m">Bộ phận nghiệp vụ</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="form3Example1n" class="form-control form-control-lg" formControlName="phone"/>
+                        <label class="form-label" for="form3Example1n">SĐT<Table></Table></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="password" id="form3Example97" class="form-control form-control-lg" formControlName="hashPW"/>
+                    <label class="form-label" for="form3Example97">Mật khẩu</label>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="password" id="form3Example97" class="form-control form-control-lg" formControlName="re_password"/>
+                    <label class="form-label" for="form3Example97">Nhập lại mật khẩu</label>
+                  </div>
+                  <div class="d-flex justify-content-end pt-3">
+                    <button type="button" class="btn btn-danger btn-lg mr-2" (click)="clear()">Reset all</button>
+                    <button type="submit" class="btn btn-info btn-lg ms-2 {{isLoading}}">Đăng kí</button>
+                  </div>
+                </form>
+              </div>
+              
             </div>
-            </div>
-            </div>
-
           </div>
-          <div class="row">
-            <div class="form-group col-sm-6">
-              <label class="details">Email:</label>
-              <input class="form-control" type="email" pattern=".+@globex\.com" size="30" formControlName="email" placeholder="Enter your email" required>
-              <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)"
-              >
-
-             <div
-             *ngIf="registerForm.controls['email'].errors?.['required']">
-               <small class="text-danger">Vui lòng nhập họ tên</small>
-             </div>
-             </div>
-             </div>
-            <div class="form-group col-sm-6">
-              <label class="details">Điện thoại:</label>
-              <input class="form-control"  type="text" placeholder="Enter your number"formControlName="phone" required>
-
-              <div *ngIf="registerForm.controls['phone'].invalid && (registerForm.controls['phone'].dirty || registerForm.controls['phone'].touched)"
-              >
-
-             <div
-             *ngIf="registerForm.controls['phone'].errors?.['required']">
-               <small class="text-danger">Vui lòng nhập Số điện thoại!</small>
-             </div>
-             </div>
-             </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-sm-6">
-            <label class="details">Mật khẩu:</label>
-            <input class="form-control"  type="password" placeholder="Enter your password" formControlName="password" required>
-
-            <div *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
-
-           <div
-           *ngIf="registerForm.controls['name'].errors?.['required']">
-             <small class="text-danger">Vui lòng nhập !</small>
-           </div>
-           </div>
-           </div>
-          <div class="form-group col-sm-6">
-            <label class="details">Xác nhận mật khẩu</label>
-            <input class="form-control"  type="password" placeholder="Confirm your password" formControlName="re_password" required>
-          </div></div>
-          <div *ngIf="registerForm.controls['re_password'].invalid && (registerForm.controls['re_password'].dirty || registerForm.controls['re_password'].touched)"
-             >
-            <div
-            *ngIf="registerForm.controls['re_password'].errors?.['required']">
-              <small class="text-danger">Vui lòng nhập mật khẩu!</small>
-            </div>
-            <div
-            *ngIf="registerForm.value.re_password!=registerForm.value.password">
-              <small class="text-warning">mật khẩu không trùng khớp</small>
-            </div>
-            </div>
         </div>
-        <div class="form-check">
-          <label>Gender</label><br>
-          <label class="form-radio-label">
-            <input class="form-radio-input" type="radio" name="optionsRadios" value="" checked="">
-            <span class="form-radio-sign">Male</span>
-          </label>
-          <label class="form-radio-label ml-3">
-            <input class="form-radio-input" type="radio" name="optionsRadios" value="">
-            <span class="form-radio-sign">Female</span>
-          </label>
-        </div>
-        <div class="form-group">
-          <label class="details">Mã số nội bộ</label>
-          <input class="form-control"  type="password" placeholder="Confirm your secret code" required>
-          <div *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)"
-             >
-
-            <div
-            *ngIf="registerForm.controls['name'].errors?.['required']">
-              <small class="text-danger">Name is required!</small>
-            </div>
-            </div>
-        </div>
-        <div class="card-action">
-          <button class="btn btn-success pull-right" type="submit">Đăng kí</button>
-          <button class="btn btn-warning" type="button">Refresh data</button>
-        </div>
-
-      </form>
+      </div>
     </div>
   </div>
-
+</section>

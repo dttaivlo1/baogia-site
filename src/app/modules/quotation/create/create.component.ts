@@ -1,16 +1,18 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Stepper from 'bs-stepper';
 
 import { Quotation } from 'src/app/core/models/quotation';
 import { QuotationService } from 'src/app/core/services/quotation.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.css'],
 })
 export class CreateComponent implements OnInit {
-  constructor(private quotationService: QuotationService){}
+  constructor(private quotationService: QuotationService, private router: Router){}
   myData: Quotation;
   submitCustomer = true;
   submitProperty = true;
@@ -47,6 +49,14 @@ ngOnInit() {
     linear: false,
     animation: true
   })
+}
+rollback(){
+  Swal.fire(
+    'Thành công!',
+    'Thao tác của bạn đã được thực hiện.',
+    'error'
+  );
+  this.router.navigate(['./baogia'])
 }
 
   }
