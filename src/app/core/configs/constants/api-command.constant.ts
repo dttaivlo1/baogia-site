@@ -6,6 +6,8 @@ export const BaseURL = {
   API_USER:'/users',
   API_QUOTATION: '/quotation',
   API_AUTHENTICATION: '/auth',
+  API_AUTHENTICATION_v2: '/auth_v2',
+  
 
 };
 /*  */
