@@ -80,12 +80,12 @@ export class ListComponent implements OnInit {
         Swal.fire({
           title: 'Bạn đang thực hiện xuất tập tin PDF thông báo giá',
           text: 'Thao tác này không thể khôi phục...',
-          icon: 'warning',
+          icon: 'info',
           iconColor: '#369faf',
           showCancelButton: true,
           confirmButtonColor: '#369faf',
           cancelButtonColor: 'danger',
-          confirmButtonText: 'Vẫn xoá!',
+          confirmButtonText: 'Đồng ý!',
         }).then((result) => {
           if (result.isConfirmed) {
             console.log(quotation);
@@ -96,24 +96,11 @@ export class ListComponent implements OnInit {
        break;
       }
       case 2: {
-        Swal.fire({
-          title: 'Bạn có chắc rằng muốn xoá ?',
-          text: 'Thao tác này không thể khôi phục...',
-          icon: 'warning',
-          iconColor: '#369faf',
-          showCancelButton: true,
-          confirmButtonColor: '#369faf',
-          cancelButtonColor: 'danger',
-          confirmButtonText: 'Vẫn xoá!',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire(
-              'Thành công!',
-              'Thao tác của bạn đã được thực hiện.',
-              'success'
-            );
-          }
-        });
+        Swal.fire(
+          'Thành công!',
+          'Thao tác này đang được phát triển',
+          'warning'
+        );
         break;
       }
       case 3: {
