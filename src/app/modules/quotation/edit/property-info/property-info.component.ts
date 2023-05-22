@@ -15,10 +15,11 @@ export class PropertyInfoComponent implements OnInit {
 
   }
   getPropsType(item){
-    if(item.name==='CTXD'){
-      return item.clcl + '%'
+    console.log(item)
+    if(item.indexName=='CTXD'){
+      return item.clcl + ' %'
     }
-    else return'';
+    else return '';
   }
   caculateSum(){
   var sum = 0;

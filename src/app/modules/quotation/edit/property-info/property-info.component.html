@@ -1,56 +1,80 @@
-<div class="card ">
+<div class="card" style="border: 1px !important">
 
-    <div class="card-body">
-        <div class=" row card-header ">
+    <div class="card-body" >
+        <div class="row">
+            <div class="col-sm-4">
+                <h2 class="text-center fw-bold">Danh sách hạng mục</h2>  
+                <table class="table table-striped table-head-bg-primary table-sm">
+                    <thead>
+                        <tr>
+                            <th>Tên Tài Sản</th>
+                            <td><h3>{{propertyData.propertyName}}</h3></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Địa chỉ</th>
+                            <td>{{propertyData.propertyAddress}}</td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Mô tả</th>
+                            <td>{{propertyData.propertyDef}}</td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Thông tin quy hoạch</th>
+                            <td>{{propertyData.propertyPlanning}}</td>
+                            
+                        </tr>
+                        <tr>
+                            <th>Nguồn thông tin</th>
+                            <td>{{propertyData.propertySource}}</td>
+                            
+                        </tr>
+                    </thead>
+                   
+                </table>
+             
+            </div>
+            <div class="col-sm-8">
+                <h2 class="text-center fw-bold">Danh sách hạng mục</h2>   
 
-            <h4 class="col-sm-4 fw-bold">Tên tài sản: {{propertyData.propertyName}}</h4>
-            <h4 class="col-sm-4 ">Địa chỉ: {{propertyData.propertyAddress}}</h4>
-
-            <h4 class="col-sm-4 ">Mô tả: {{propertyData.propertyDef}}</h4>
-
-
+                <div class="table-responsive-sm">
+                    <table class="table   table-hover table-bordered table-head-bg-primary table-sm">
+                        <thead>
+                            <tr>
+                                <th>Mã hạng mục</th>
+                                <th>Tên hạng mục</th>
+                                <th>Đơn giá (vnđ)</th>
+                                <th>Diện tích
+                                    (m<sup>2</sup>)</th>
+                                <th>CLCL</th>
+                                <th>Thành tiền (vnđ)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of propertyData.indexData">
+                                <td scope="row">TS{{propertyData.id}}{{item.id}}</td>
+                                <td class=" col-sm-3">{{item.indexName}}</td>
+                                <td>{{item.unitPrice.toLocaleString('en')}}</td>
+                                <td>{{item.area.toLocaleString('en') }}</td>
+                                <td>{{ getPropsType(item)}}</td>
+                                <td class="fw-bold">{{item.totalPrice.toLocaleString('en')}} <strong>VNĐ</strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">Tổng tiền:</td>
+                                <td colspan="2" class="fw-bold">{{caculateSum().toLocaleString('en')}} <strong>VNĐ</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h5 class="text-center font-italic">(Bảng dữ liệu mang tính chất tham khảo)</h5>
+        
+                </div>
+            </div>
         </div>
        
 
-        <div class="row card-body">
-            <h3 class="col-sm-6 text-center fw-bold">Thông tin quy hoạch: {{propertyData.propertyPlanning}}</h3>
-            <h3 class="col-sm-6 text-center fw-bold">Nguồn thông tin: {{propertyData.propertySource}}</h3>
-        </div>
-
-        <h4 class="text-center fw-bold">Danh sách hạng mục</h4>   
-
-        <div class="table-responsive-sm">
-            <table class="table  table-hover table-bordered table-head-bg-primary table-sm">
-                <thead>
-                    <tr>
-                        <th>Mã hạng mục</th>
-                        <th>Tên hạng mục</th>
-                        <th>Đơn giá (vnđ)</th>
-                        <th>Diện tích
-                            (m<sup>2</sup>)</th>
-                        <th>CLCL</th>
-                        <th>Thành tiền (vnđ)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of propertyData.indexData">
-                        <td scope="row">TS{{propertyData.id}}{{item.id}}</td>
-                        <td class=" col-sm-3">{{item.indexName}}</td>
-                        <td>{{item.unitPrice.toLocaleString('en')}}</td>
-                        <td>{{item.area.toLocaleString('en') }}</td>
-                        <td>{{getPropsType(item)}}</td>
-                        <td class="fw-bold">{{item.totalPrice.toLocaleString('en')}} <strong>VNĐ</strong></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">Tổng tiền:</td>
-                        <td colspan="2" class="fw-bold">{{caculateSum().toLocaleString('en')}} <strong>VNĐ</strong></td>
-                    </tr>
-
-                </tbody>
-            </table>
-            <h5 class="text-center font-italic">(Bảng dữ liệu mang tính chất tham khảo)</h5>
-
-        </div>
+       
 
     </div>
 </div>
