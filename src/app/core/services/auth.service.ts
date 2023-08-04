@@ -43,6 +43,8 @@ data.hashPW = this.MD5.appendStr(data.hashPW).end()
       if (response.data ==="0"){
       Swal.fire(
         'Thành cônng',
+
+        
         'Tài khoản đã được tạo thành công',
       'success'
       )
