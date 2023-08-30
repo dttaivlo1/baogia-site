@@ -7,7 +7,7 @@ import { StandardGuard } from './core/guards/standard.guard';
 import * as path from 'path';
 
 const routes: Routes = [
-  {path: '', loadChildren: ()=>AdminLayoutModule, canActivateChild:[StandardGuard]},
+  {path: '', loadChildren: ()=>AdminLayoutModule},
   {path: 'login',component: LoginComponent},
   {path: 'register',component: RegisterComponent},
 ];
